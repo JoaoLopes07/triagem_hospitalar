@@ -1,26 +1,37 @@
-Funcionalidade: Classificação de Risco de Pacientes
+# MedTriage System - Sistema de Triagem Hospitalar
 
-  Cenário: Paciente com saturação de oxigênio crítica
-    Dado que o paciente possui uma saturação de oxigênio de 80%
-    E uma frequência cardíaca de 130 bpm
-    Quando a triagem for executada utilizando o Protocolo de Manchester
-    Então o sistema deve definir a cor do risco como "VERMELHO"
-    E alterar o status do atendimento para "CLASSIFICADO"
+O MedTriage é uma solução de software projetada para automatizar o fluxo de classificação de risco em prontos-socorros com base no Protocolo de Manchester. O sistema foi desenvolvido dividindo as responsabilidades em microsserviços independentes, aplicando conceitos de Arquitetura Limpa, princípios SOLID, Design Patterns, TDD e BDD.
 
-Evidências de Clean Code: Código altamente legível, com nomenclatura autoexplicativa para funções e variáveis, eliminação de estruturas redundantes e ausência total de comentários poluidores.
+## Links do Sistema Publicado (Render)
 
-Aplicação dos Princípios SOLID:
+* **Microsserviço de Triagem (Triage-Service):** https://triagem-hospitalar-k0li.onrender.com
+* **Microsserviço de Pacientes (Patient-Service):** https://triagem-hospitalar-ts8q.onrender.com
 
-SRP: Cada classe possui uma única função dentro do ecossistema.
+---
 
-OCP: O comportamento das classificações pode ser estendido com novas estratégias sem alterar o código existente.
+## 1. Estrutura do Projeto (Arquitetura Limpa)
 
-LSP: O repositório em memória pode ser facilmente substituído por um banco real através da interface.
+A solução adota os pilares da Clean Architecture para isolar as regras de negócio de detalhes de infraestrutura e frameworks web.
 
-ISP: Clientes da interface não são forçados a depender de métodos que não utilizam.
-
-DIP: A lógica de aplicação depende puramente de interfaces abstratas, isolando o núcleo de dependências de infraestrutura externa.
-
-Design Patterns Implementados: Strategy (regras de Manchester), Repository (abstração de dados), Injeção de Dependência (via construtores) e Data Transfer Object (estruturação de payloads JSON).
-
-Link de Acesso ao Sistema: https://medtriage-tcc.render.com (Substitua pela sua URL após realizar o upload do repositório no Render, Railway ou plataforma de sua preferência)
+```text
+medtriage-project/
+├── docker-compose.yml
+├── patient-service/
+│   ├── Dockerfile
+│   ├── requirements.txt
+│   └── app.py
+└── triage-service/
+    ├── Dockerfile
+    ├── requirements.txt
+    ├── app.py
+    ├── test_triage.py
+    └── src/
+        ├── core/
+        │   ├── domain/
+        │   │   └── entities.py
+        │   └── usecases/
+        │       ├── interfaces.py
+        │       └── perform_triage.py
+        └── infrastructure/
+            └── database/
+                └── repository.py
