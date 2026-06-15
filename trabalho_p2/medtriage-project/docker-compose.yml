@@ -1,0 +1,12 @@
+version: '3.8'
+
+services:
+  patient-service:
+    build: ./patient-service
+    ports:
+      - "8001:8001"
+
+  triage-service:
+    build: ./triage-service
+    ports:
+      - "8002:8002"
