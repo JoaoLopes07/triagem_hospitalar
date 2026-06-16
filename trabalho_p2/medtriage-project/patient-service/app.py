@@ -18,5 +18,13 @@ def get_patient(patient_id):
         return jsonify({"message": "Paciente nao encontrado"}), 404
     return jsonify(patient), 200
 
+@app.route("/", methods=["GET"])
+def index():
+    return jsonify({
+        "servico": "Microsservico de Pacientes (Patient-Service)",
+        "status": "Online"
+    }), 200
+
+
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=8001)
