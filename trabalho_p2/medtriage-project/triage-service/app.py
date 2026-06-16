@@ -25,6 +25,15 @@ def create_triage():
         "color": updated_triage.color,
         "status": updated_triage.status
     }), 201
+    
+@app.route("/", methods=["GET"])
+def index():
+    return jsonify({
+        "servico": "Microsservico de Triagem (Triage-Service)",
+        "status": "Online",
+        "protocolo": "Manchester"
+    }), 200
+
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=8002)
